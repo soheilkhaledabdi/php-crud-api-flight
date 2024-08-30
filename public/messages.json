@@ -1,0 +1,12 @@
+{
+    "invalid_input": "The provided input is invalid.",
+    "users_route" : "Users list route.",
+    "users_created" : "User create route",
+    "users_not_created" : "User not created",
+    "users_updated" : "User successfully updated",
+    "users_not_updated" : "users_not_updated",
+    "users_deleted" : "User successfully deleted",
+    "users_not_deleted" : "User not deleted",
+    "users_not_found" : "User not found",
+    "users_found" : "User successfully resulted"
+}

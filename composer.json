@@ -2,9 +2,13 @@
     "autoload": {
         "psr-4": {
             "App\\": "app/"
-        }
+        },
+        "files": [
+            "app/Helpers/functions.php"
+        ]
     },
     "require": {
-        "flightphp/core": "^3.11"
+        "flightphp/core": "^3.11",
+        "geekgroveofficial/php-smart-validator": "^1.0"
     }
 }
