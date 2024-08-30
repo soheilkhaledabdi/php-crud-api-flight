@@ -114,6 +114,12 @@ Follow these steps to set up the project:
 
    Once your server is set up, navigate to the URL configured (e.g., `http://localhost:8000` or `http://yoursite.local`) and test the CRUD functionality.
 
+### Validation Package
+
+We use the `php-smart-validator` package for validation. You can find more information and the source code at the following link:
+
+`https://github.com/geekGroveOfficial/php-smart-validator`
+
 ### Contributing
 
 If you wish to contribute to this project, please fork the repository, create a new branch for your feature or bug fix, and submit a pull request.
