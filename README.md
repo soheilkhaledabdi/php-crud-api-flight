@@ -118,7 +118,7 @@ Follow these steps to set up the project:
 
 We use the `php-smart-validator` package for validation. You can find more information and the source code at the following link:
 
-`https://github.com/geekGroveOfficial/php-smart-validator`
+https://github.com/geekGroveOfficial/php-smart-validator
 
 ### Contributing
 
