@@ -2,12 +2,15 @@
 
 namespace App\Controllers;
 
+use GeekGroveOfficial\PhpSmartValidator\Validator\Validator;
 use App\Actions\Users\Create;
 use App\Actions\Users\Delete;
 use App\Actions\Users\GetAll;
 use App\Actions\Users\Show;
 use App\Actions\Users\Update;
 use App\Traits\ApiResponse;
+use Exception;
+use Flight;
 
 class UserController
 {
@@ -15,16 +18,26 @@ class UserController
 
     public function index()
     {
-        return $this->success(GetAll::execute(), 'Users list route', 200);
+        return $this->success(GetAll::execute(), getMessage('users_route'), 200);
     }
 
     public function store()
     {
-        $result = Create::execute();
-        if ($result['status'])
-            return $this->success([], 'User create route');
-        else
-            return $this->failed([], 'User not created');
+        $request = Flight::request()->data->getData();
+
+        $validator = new Validator($request, [
+            'name' => ['required', 'string'],
+        ]);
+
+        if (!$validator->validate())
+            return $this->failed($validator->errors(), getMessage('invalid_input'), 400);
+
+        try {
+            $result = Create::execute($request);
+            return $this->success([], $result['message'], 201);
+        } catch (Exception $exception) {
+            return $this->failed([], getMessage('users_not_created'));
+        }
     }
 
     public function show($id)
@@ -38,19 +51,32 @@ class UserController
 
     public function update($id)
     {
-        $result = Update::execute($id);
-        if ($result['status'])
+        $request = Flight::request()->data->getData();
+
+        $validator = new Validator($request, [
+            'name' => ['required', 'string'],
+        ]);
+
+        if (!$validator->validate())
+        return $this->failed($validator->errors(), getMessage('invalid_input'), 400);
+
+        try {
+            $result = Update::execute($id, $request);
             return $this->success([], $result['message']);
-        else
-            return $this->failed([], $result['message']);
+
+        } catch (Exception $exception) {
+            return $this->failed([], getMessage('users_not_updated'));
+        }
     }
 
     public function delete($id)
     {
-        $result = Delete::execute($id);
-        if ($result['status'])
+        try {
+            $result = Delete::execute($id);
             return $this->success([], $result['message']);
-        else
-            return $this->failed([], $result['message']);
+        } catch (Exception $exception) {
+            return $this->failed([], getMessage('users_not_deleted'));
+
+        }
     }
 }

@@ -11,9 +11,9 @@ class Delete
     {
         try {
             User::delete($id);
-            return ['message' => 'User successfully deleted', 'status' => true];
+            return ['message' => getMessage('users_deleted'), 'status' => true];
         } catch (Exception $exception) {
-            return ['message' => $exception->getMessage(), 'status' => false];
+            return $exception;
         }
     }
 }

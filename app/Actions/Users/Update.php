@@ -7,15 +7,14 @@ use Exception;
 
 class Update
 {
-    public static function execute($id)
+    public static function execute(int $id,array $data): array
     {
         try {
-            $data = json_decode(file_get_contents('php://input'), true);
             $user = new User($id, $data['name']);
             $user->update();
-            return ['message' => 'User successfully updated', 'status' => true];
+            return ['message' => getMessage('users_updated'), 'status' => true];
         } catch (Exception $exception) {
-            return ['message' => $exception->getMessage(), 'status' => true];
+            return $exception;
         }
     }
 }

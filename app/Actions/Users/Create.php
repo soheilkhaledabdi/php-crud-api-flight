@@ -3,18 +3,18 @@
 namespace App\Actions\Users;
 
 use App\Models\User;
+use Exception;
 
 class Create
 {
-    public static function execute()
+    public static function execute(array $data)
     {
-        $data = json_decode(file_get_contents('php://input'), true);
-        if ($data && isset($data['name'])) {
+        try {
             $user = new User(null, $data['name']);
             $user->save();
-            return ["message" => 'User created', "status" => true];
-        } else {
-            return ["message" => 'Invalid input', "status" => false];
+            return ["message" => getMessage('users_created'), "status" => true];
+        } catch (Exception $exception) {
+            throw $exception;
         }
     }
 }
