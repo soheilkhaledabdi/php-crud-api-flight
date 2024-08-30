@@ -10,7 +10,7 @@ trait ApiResponse
     {
         return Flight::json([
             'data' => $data,
-            'status' => $code,
+            'status' => true,
             'message' => $message,
         ], $code);
     }
@@ -19,7 +19,7 @@ trait ApiResponse
     {
         return Flight::json([
             'data' => $data,
-            'status' => $code,
+            'status' => false,
             'message' => $message,
         ], $code);
     }
