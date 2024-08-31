@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "flightphp/core",
-            "version": "v3.11.1",
+            "version": "v3.12.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/flightphp/core.git",
-                "reference": "7cfaca8f1686b3edd7cb1592ec928ad695e38be3"
+                "reference": "63fbf9b0316969e8aa6c318f8479d1ed0578f9b4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/flightphp/core/zipball/7cfaca8f1686b3edd7cb1592ec928ad695e38be3",
-                "reference": "7cfaca8f1686b3edd7cb1592ec928ad695e38be3",
+                "url": "https://api.github.com/repos/flightphp/core/zipball/63fbf9b0316969e8aa6c318f8479d1ed0578f9b4",
+                "reference": "63fbf9b0316969e8aa6c318f8479d1ed0578f9b4",
                 "shasum": ""
             },
             "require": {
@@ -76,28 +76,29 @@
             "homepage": "http://flightphp.com",
             "support": {
                 "issues": "https://github.com/flightphp/core/issues",
-                "source": "https://github.com/flightphp/core/tree/v3.11.1"
+                "source": "https://github.com/flightphp/core/tree/v3.12.0"
             },
-            "time": "2024-07-13T03:41:39+00:00"
+            "time": "2024-08-22T17:05:34+00:00"
         },
         {
             "name": "geekgroveofficial/php-smart-validator",
-            "version": "v1.0.0",
+            "version": "v1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/geekGroveOfficial/php-smart-validator.git",
-                "reference": "6fe0f55b5e01bffec847856f98fbbb236ac20865"
+                "reference": "20f93ad0327d5697837f66715fb137e351e31af2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/geekGroveOfficial/php-smart-validator/zipball/6fe0f55b5e01bffec847856f98fbbb236ac20865",
-                "reference": "6fe0f55b5e01bffec847856f98fbbb236ac20865",
+                "url": "https://api.github.com/repos/geekGroveOfficial/php-smart-validator/zipball/20f93ad0327d5697837f66715fb137e351e31af2",
+                "reference": "20f93ad0327d5697837f66715fb137e351e31af2",
                 "shasum": ""
             },
             "require": {
                 "php": "^8.0"
             },
             "require-dev": {
+                "laravel/pint": "*",
                 "phpunit/phpunit": "^11.0"
             },
             "type": "library",
@@ -113,9 +114,9 @@
             "description": "A smart validation package for PHP",
             "support": {
                 "issues": "https://github.com/geekGroveOfficial/php-smart-validator/issues",
-                "source": "https://github.com/geekGroveOfficial/php-smart-validator/tree/v1.0.0"
+                "source": "https://github.com/geekGroveOfficial/php-smart-validator/tree/v1.0.2"
             },
-            "time": "2024-08-28T12:06:08+00:00"
+            "time": "2024-08-31T22:05:04+00:00"
         }
     ],
     "packages-dev": [],
