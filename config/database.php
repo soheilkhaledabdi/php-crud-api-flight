@@ -1,9 +1,9 @@
 <?php
 
 return [
-    'host' => 'localhost',
-    'database' => 'map',
-    'username' => 'root',
-    'password' => '',
-    'charset' => 'utf8mb4',
+    'host' => env('DB_HOST', 'localhost'),
+    'database' => env('DB_NAME', 'test'),
+    'username' => env('DB_USER', 'root'),
+    'password' => env('DB_PASSWORD', ''),
+    'charset' => env('DB_CHARSET', 'utf8mb4'),
 ];
