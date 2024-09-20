@@ -9,6 +9,7 @@
     },
     "require": {
         "flightphp/core": "^3.11",
-        "geekgroveofficial/php-smart-validator": "^1.0"
+        "geekgroveofficial/php-smart-validator": "^1.0",
+        "vlucas/phpdotenv": "^5.6"
     }
 }
