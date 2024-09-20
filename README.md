@@ -41,19 +41,12 @@ Follow these steps to set up the project:
 
 3. **Configure the Database:**
 
-   Update your database connection settings in `config/database.php`. 
+    Copy the .env.example file to .env:
+    ```bash
+    cp .env.example .env
+    ```
+    - **Configure the Database:** Update the .env file with your database credentials.
 
-   Open the file and edit the following lines with your database credentials:
-
-   ```php
-   return [
-    'host' => 'your_database_host',
-    'database' => 'your_database_name',
-    'username' => 'your_database_username',
-    'password' => 'your_database_password',
-    'charset' => 'utf8mb4'
-   ];
-   ```
 
 4. **Set Up a Web Server:**
 
