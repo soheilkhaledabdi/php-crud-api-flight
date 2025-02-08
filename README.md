@@ -26,86 +26,93 @@ Follow these steps to set up the project:
 
 1. **Clone the Repository:**
 
-   ```bash
-   git clone https://github.com/soheilkhaledabdi/php-crud-api-flight.git
-   cd php-crud-api-flight
-   ```
+    ```bash
+    git clone https://github.com/soheilkhaledabdi/php-crud-api-flight.git
+    cd php-crud-api-flight
+    ```
 
 2. **Install Dependencies:**
 
-   Install the Flight framework and other dependencies using Composer:
+    Install the Flight framework and other dependencies using Composer:
 
-   ```bash
-   composer install
-   ```
+    ```bash
+    composer install
+    ```
 
 3. **Configure the Database:**
 
-    Copy the .env.example file to .env:
-    ```bash
-    cp .env.example .env
-    ```
-    - **Configure the Database:** Update the .env file with your database credentials.
+     Copy the .env.example file to .env:
+     ```bash
+     cp .env.example .env
+     ```
+     - **Configure the Database:** Update the .env file with your database credentials.
 
+4. **Run Database Migrations:**
 
-4. **Set Up a Web Server:**
-
-   You can use Apache, Nginx, or PHP’s built-in server to run the project. Choose one of the following options:
-
-   - **Using PHP’s Built-In Server:**
-
-     Navigate to the `public` directory and start the PHP server:
+     Use Phinx to run the database migrations:
 
      ```bash
-     cd public
-     php -S localhost:8000
+     vendor/bin/phinx migrate
      ```
 
-     Now, open your web browser and visit `http://localhost:8000`.
+5. **Set Up a Web Server:**
 
-   - **Using Apache or Nginx:**
+    You can use Apache, Nginx, or PHP’s built-in server to run the project. Choose one of the following options:
 
-     Set the document root to the `public` directory of the project. Configure the server to point to `public/index.php`.
+    - **Using PHP’s Built-In Server:**
 
-     For Apache, you might set up a virtual host like this:
+      Navigate to the `public` directory and start the PHP server:
 
-     ```apache
-     <VirtualHost *:80>
-         ServerName yoursite.local
-         DocumentRoot /path/to/php-crud-api-flight/public
-         <Directory /path/to/php-crud-api-flight/public>
-             AllowOverride All
-             Require all granted
-         </Directory>
-     </VirtualHost>
-     ```
+      ```bash
+      cd public
+      php -S localhost:8000
+      ```
 
-     For Nginx, your server block might look like this:
+      Now, open your web browser and visit `http://localhost:8000`.
 
-     ```nginx
-     server {
-         listen 80;
-         server_name yoursite.local;
-         root /path/to/php-crud-api-flight/public;
+    - **Using Apache or Nginx:**
 
-         index index.php index.html index.htm;
+      Set the document root to the `public` directory of the project. Configure the server to point to `public/index.php`.
 
-         location / {
-             try_files $uri $uri/ /index.php?$query_string;
-         }
+      For Apache, you might set up a virtual host like this:
 
-         location ~ \.php$ {
-             include snippets/fastcgi-php.conf;
-             fastcgi_pass unix:/var/run/php/php7.4-fpm.sock;
-             fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
-             include fastcgi_params;
-         }
-     }
-     ```
+      ```apache
+      <VirtualHost *:80>
+            ServerName yoursite.local
+            DocumentRoot /path/to/php-crud-api-flight/public
+            <Directory /path/to/php-crud-api-flight/public>
+                 AllowOverride All
+                 Require all granted
+            </Directory>
+      </VirtualHost>
+      ```
+
+      For Nginx, your server block might look like this:
+
+      ```nginx
+      server {
+            listen 80;
+            server_name yoursite.local;
+            root /path/to/php-crud-api-flight/public;
+
+            index index.php index.html index.htm;
+
+            location / {
+                 try_files $uri $uri/ /index.php?$query_string;
+            }
+
+            location ~ \.php$ {
+                 include snippets/fastcgi-php.conf;
+                 fastcgi_pass unix:/var/run/php/php7.4-fpm.sock;
+                 fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+                 include fastcgi_params;
+            }
+      }
+      ```
 
 6. **Testing the Application:**
 
-   Once your server is set up, navigate to the URL configured (e.g., `http://localhost:8000` or `http://yoursite.local`) and test the CRUD functionality.
+    Once your server is set up, navigate to the URL configured (e.g., `http://localhost:8000` or `http://yoursite.local`) and test the CRUD functionality.
 
 ### Validation Package
 
