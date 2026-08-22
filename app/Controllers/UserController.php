@@ -16,21 +16,25 @@ class UserController
 {
     use ApiResponse;
 
+    private const VALIDATION_RULES = [
+        'name' => ['required', 'string', 'max:100'],
+        'email' => ['required', 'email', 'max:150'],
+    ];
+
     public function index()
     {
-        return $this->success(GetAll::execute(), getMessage('users_route'), 200);
+        return $this->success(GetAll::execute(), getMessage('users_route'));
     }
 
     public function store()
     {
         $request = Flight::request()->data->getData();
 
-        $validator = new Validator($request, [
-            'name' => ['required', 'string'],
-        ]);
+        $validator = new Validator($request, self::VALIDATION_RULES);
 
-        if (!$validator->validate())
+        if (! $validator->validate()) {
             return $this->failed($validator->errors(), getMessage('invalid_input'), 400);
+        }
 
         try {
             $result = Create::execute($request);
@@ -40,43 +44,42 @@ class UserController
         }
     }
 
-    public function show($id)
+    public function show(int $id)
     {
         $result = Show::execute($id);
-        if ($result['status'])
+
+        if ($result['status']) {
             return $this->success($result['data'], $result['message']);
-        else
-            return $this->failed([], $result['message']);
+        }
+
+        return $this->failed([], $result['message'], 404);
     }
 
-    public function update($id)
+    public function update(int $id)
     {
         $request = Flight::request()->data->getData();
 
-        $validator = new Validator($request, [
-            'name' => ['required', 'string'],
-        ]);
+        $validator = new Validator($request, self::VALIDATION_RULES);
 
-        if (!$validator->validate())
-        return $this->failed($validator->errors(), getMessage('invalid_input'), 400);
+        if (! $validator->validate()) {
+            return $this->failed($validator->errors(), getMessage('invalid_input'), 400);
+        }
 
         try {
             $result = Update::execute($id, $request);
             return $this->success([], $result['message']);
-
         } catch (Exception $exception) {
             return $this->failed([], getMessage('users_not_updated'));
         }
     }
 
-    public function delete($id)
+    public function delete(int $id)
     {
         try {
             $result = Delete::execute($id);
             return $this->success([], $result['message']);
         } catch (Exception $exception) {
             return $this->failed([], getMessage('users_not_deleted'));
-
         }
     }
 }

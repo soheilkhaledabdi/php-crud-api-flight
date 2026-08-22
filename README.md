@@ -6,16 +6,18 @@ This project is a simple CRUD API built using the [Flight PHP framework](https:/
 
 ### Features
 
-- Lightweight and fast setup with Flight framework.
-- Basic CRUD (Create, Read, Update, Delete) operations.
-- Configurable database connection.
+- Lightweight and fast setup with the Flight framework (v3.19).
+- Basic CRUD (Create, Read, Update, Delete) operations for a `User` resource.
+- Routes grouped under `/users` and resolved lazily (`Flight::group()` + `Class->method` strings), so controllers are only instantiated when their route actually matches.
+- Consistent JSON responses, including for 404 (`Flight::map('notFound', ...)`) and uncaught errors (`Flight::map('error', ...)`).
+- Configurable database connection via `.env`.
 - Suitable for development with Apache, Nginx, or PHP's built-in server.
 
 ### Prerequisites
 
 Before you begin, ensure you have the following installed on your machine:
 
-- PHP 7.4 or higher
+- PHP 8.2 or higher
 - A web server (Apache, Nginx, or PHP's built-in server)
 - Composer (for dependency management)
 - A MySQL or MariaDB database server
@@ -103,7 +105,7 @@ Follow these steps to set up the project:
 
             location ~ \.php$ {
                  include snippets/fastcgi-php.conf;
-                 fastcgi_pass unix:/var/run/php/php7.4-fpm.sock;
+                 fastcgi_pass unix:/var/run/php/php8.2-fpm.sock;
                  fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
                  include fastcgi_params;
             }
@@ -112,7 +114,27 @@ Follow these steps to set up the project:
 
 6. **Testing the Application:**
 
-    Once your server is set up, navigate to the URL configured (e.g., `http://localhost:8000` or `http://yoursite.local`) and test the CRUD functionality.
+    Once your server is set up, navigate to the URL configured (e.g., `http://localhost:8000` or `http://yoursite.local`) and test the CRUD functionality below.
+
+### API Endpoints
+
+All routes are grouped under `/users` and return JSON in the shape `{ "data": ..., "status": bool, "message": string }`.
+
+| Method | Endpoint      | Description       | Body                          |
+|--------|---------------|--------------------|--------------------------------|
+| GET    | `/users`      | List all users     | -                               |
+| GET    | `/users/{id}` | Get a single user  | -                               |
+| POST   | `/users`      | Create a user      | `{ "name": "...", "email": "..." }` |
+| PUT    | `/users/{id}` | Update a user      | `{ "name": "...", "email": "..." }` |
+| DELETE | `/users/{id}` | Delete a user      | -                               |
+
+Example:
+
+```bash
+curl -X POST http://localhost:8000/users \
+    -H "Content-Type: application/json" \
+    -d '{"name": "Ada Lovelace", "email": "ada@example.com"}'
+```
 
 ### Validation Package
 

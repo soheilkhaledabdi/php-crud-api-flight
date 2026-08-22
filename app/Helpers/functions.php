@@ -37,7 +37,12 @@ function getMessage(string $key, array $params = []): string
 
 function env(string $key, ?string $default = null)
 {
-    $dotenv = Dotenv\Dotenv::createImmutable(__DIR__.'/../..');
-    $dotenv->load();
+    static $loaded = false;
+
+    if (! $loaded) {
+        Dotenv\Dotenv::createImmutable(__DIR__.'/../..')->safeLoad();
+        $loaded = true;
+    }
+
     return $_ENV[$key] ?? $default;
 }

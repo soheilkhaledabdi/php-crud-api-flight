@@ -3,17 +3,13 @@
 namespace App\Actions\Users;
 
 use App\Models\User;
-use Exception;
 
 class Delete
 {
-    public static function execute($id)
+    public static function execute(int $id): array
     {
-        try {
-            User::delete($id);
-            return ['message' => getMessage('users_deleted'), 'status' => true];
-        } catch (Exception $exception) {
-            return $exception;
-        }
+        User::delete($id);
+
+        return ['message' => getMessage('users_deleted'), 'status' => true];
     }
 }

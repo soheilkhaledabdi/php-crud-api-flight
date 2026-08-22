@@ -3,18 +3,14 @@
 namespace App\Actions\Users;
 
 use App\Models\User;
-use Exception;
 
 class Create
 {
-    public static function execute(array $data)
+    public static function execute(array $data): array
     {
-        try {
-            $user = new User(null, $data['name']);
-            $user->save();
-            return ["message" => getMessage('users_created'), "status" => true];
-        } catch (Exception $exception) {
-            throw $exception;
-        }
+        $user = new User(name: $data['name'], email: $data['email']);
+        $user->save();
+
+        return ['message' => getMessage('users_created'), 'status' => true];
     }
 }

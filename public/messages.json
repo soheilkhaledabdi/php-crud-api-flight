@@ -1,5 +1,7 @@
 {
     "invalid_input": "The provided input is invalid.",
+    "route_not_found": "The requested route was not found.",
+    "internal_error": "An unexpected error occurred.",
     "users_route" : "Users list route.",
     "users_created" : "User create route",
     "users_not_created" : "User not created",

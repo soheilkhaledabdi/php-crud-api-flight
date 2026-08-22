@@ -2,8 +2,10 @@
 
 use App\Controllers\UserController;
 
-Flight::route('GET /users', [new UserController(), 'index']);
-Flight::route('GET /users/@id', [new UserController(), 'show']);
-Flight::route('POST /users', [new UserController(), 'store']);
-Flight::route('PUT /users/@id', [new UserController(), 'update']);
-Flight::route('DELETE /users/@id', [new UserController(), 'delete']);
+Flight::group('/users', function () {
+    Flight::route('GET /', UserController::class . '->index');
+    Flight::route('GET /@id:[0-9]+', UserController::class . '->show');
+    Flight::route('POST /', UserController::class . '->store');
+    Flight::route('PUT /@id:[0-9]+', UserController::class . '->update');
+    Flight::route('DELETE /@id:[0-9]+', UserController::class . '->delete');
+});

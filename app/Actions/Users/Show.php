@@ -3,20 +3,17 @@
 namespace App\Actions\Users;
 
 use App\Models\User;
-use Exception;
 
 class Show
 {
-    public static function execute($id)
+    public static function execute(int $id): array
     {
-        try {
-            $user = User::getById($id);
-            if ($user !== false)
-                return ['message' => getMessage('users_found'), 'status' => true, 'data' => $user];
-            else
-                return ['message' => getMessage('users_not_found'), 'status' => false];
-        } catch (Exception $exception) {
-            return ['message' => $exception->getMessage(), 'status' => false];
+        $user = User::getById($id);
+
+        if ($user !== false) {
+            return ['message' => getMessage('users_found'), 'status' => true, 'data' => $user];
         }
+
+        return ['message' => getMessage('users_not_found'), 'status' => false];
     }
 }
