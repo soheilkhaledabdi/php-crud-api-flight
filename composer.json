@@ -11,11 +11,27 @@
             "app/Helpers/functions.php"
         ]
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
+    },
     "require": {
         "php": "^8.2",
         "flightphp/core": "^3.18.1",
         "geekgroveofficial/php-smart-validator": "^1.0",
         "vlucas/phpdotenv": "^5.6",
         "robmorgan/phinx": "^0.16.6"
+    },
+    "require-dev": {
+        "pestphp/pest": "^3.8"
+    },
+    "config": {
+        "allow-plugins": {
+            "pestphp/pest-plugin": true
+        }
+    },
+    "scripts": {
+        "test": "pest"
     }
 }
