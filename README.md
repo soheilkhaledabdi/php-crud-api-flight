@@ -135,7 +135,31 @@ curl -X POST http://localhost:8000/users \
     -H "Content-Type: application/json" \
     -d '{"name": "Ada Lovelace", "email": "ada@example.com"}'
 ```
+## Testing
 
+The test suite uses [Pest](https://pestphp.com/) and requires a MySQL or MariaDB database.
+
+1. Install the project dependencies:
+
+   ```bash
+   composer install
+   ```
+
+2. Create a separate database for testing and configure its credentials in your `.env` file.
+
+3. Run the database migrations:
+
+   ```bash
+   vendor/bin/phinx migrate
+   ```
+
+4. Run the test suite:
+
+   ```bash
+   composer test
+   ```
+
+> **Important:** Use a dedicated test database. The test suite clears the `users` table between tests to keep each test isolated.
 ### Validation Package
 
 We use the `php-smart-validator` package for validation. You can find more information and the source code at the following link:
